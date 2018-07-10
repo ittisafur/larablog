@@ -20,16 +20,23 @@
       </div>
     </div><!-- /.container-fluid -->
   </section>
-
+  @if(count($errors) > 0)
+  	@foreach($errors->all() as $error)
+  		<p class="alert alert-danger">{{$error}}</p>
+  	@endforeach
+  @endif
   <!-- Main content -->
   <section class="content">
     <div class="row">
       <div class="col-md-12">
-
+		
 		<!-- general form elements -->
 		<div class="card card-primary">
 		  <!-- form start -->
-		  <form role="form">
+		  
+		  <form role="form" action="{{route('post.store')}}" method="POST">
+		  	
+		  	{{csrf_field()}}
 		    <div class="card-body">
 		    	
 	    		<div class="form-group">
