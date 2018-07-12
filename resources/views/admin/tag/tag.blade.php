@@ -29,7 +29,8 @@
 		<!-- general form elements -->
 		<div class="card card-primary">
 		  <!-- form start -->
-		  <form role="form">
+		  <form role="form" action="{{route('tag.store')}}" method="POST">
+        {{csrf_field()}}
 		    <div class="card-body">
 		    	
 	    		<div class="form-group">

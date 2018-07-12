@@ -28,10 +28,11 @@
 
 		<!-- general form elements -->
 		<div class="card card-primary">
+      @include('errors.error')
 		  <!-- form start -->
-		  <form role="form">
+		  <form role="form" action="{{route('category.store')}}" method="POST">
 		    <div class="card-body">
-		    	
+	    	{{csrf_field()}}
 	    		<div class="form-group">
 	    		  <label for="name">Category Title</label>
 	    		  <input type="text" name="name" class="form-control" id="name" placeholder="Enter Category">
