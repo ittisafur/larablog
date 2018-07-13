@@ -15,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.show');
+        $categories = category::all();
+        return view('admin.category.show', compact('categories'));
     }
 
     /**
@@ -46,7 +47,8 @@ class CategoryController extends Controller
             'slug' => $request->slug,            
         ]);
 
-        return redirect(route('category.index'));    }
+        return redirect(route('category.index'));   
+    }
 
     /**
      * Display the specified resource.

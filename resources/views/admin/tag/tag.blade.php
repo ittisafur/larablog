@@ -28,6 +28,7 @@
 
 		<!-- general form elements -->
 		<div class="card card-primary">
+      @include('errors.error')
 		  <!-- form start -->
 		  <form role="form" action="{{route('tag.store')}}" method="POST">
         {{csrf_field()}}
@@ -46,7 +47,8 @@
 	    	
 
 		    <div class="card-footer">
-		      <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+		      <a href="{{route('tag.index')}}" class="btn btn-warning">Back</a>
 		    </div>
 		  </form>
 		</div>

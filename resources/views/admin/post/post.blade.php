@@ -20,6 +20,7 @@
       </div>
     </div><!-- /.container-fluid -->
   </section>
+  
   @include('errors.error')
   <!-- Main content -->
   <section class="content">
@@ -67,10 +68,7 @@
 	    		<div class="form-check">
 	    		  <input type="checkbox" class="form-check-input" id="exampleCheck1">
 	    		  <label name="status" class="form-check-label" for="exampleCheck1">Publish</label>
-	    		</div>
-		    	     
-	
-		      
+	    		</div>		      
 		      
 		    </div>
 		    <!-- /.card-body -->
@@ -101,6 +99,7 @@
 
 		    <div class="card-footer">
 		      <button type="submit" class="btn btn-primary">Submit</button>
+		      <a href="{{route('post.index')}}" class="btn btn-warning">Back</a>
 		    </div>
 		  </form>
 		</div>
