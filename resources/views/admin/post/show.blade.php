@@ -71,8 +71,26 @@
                   <td>{{$post->subtitle}}</td>
                   <td>{{$post->slug}}</td>
                   <td>{{$post->created_at->diffForHumans()}}</td>
-                  <td>Edit</td>
-                  <td>X</td>
+                  <td><a href="{{route('post.edit', $post->id)}}"><ion-icon name="create"></ion-icon></a></td>
+                  <td>
+                    <form id="delete-form-{{$post->id}}" action="{{route('post.destroy',$post->id)}}"  style="display: none;"  method="POST">
+                      {{csrf_field()}}
+                      {{method_field('DELETE')}}
+                    </form>
+                    <a href="" onclick="
+                      if(confirm('Are you sure? You want to delete the Post ?'))
+                        {
+                          event.preventDefault();
+                          document.getElementById('delete-form-{{$post->id}}').submit();
+                        }
+                      else
+                        {
+                          event.preventDefault();
+                        }
+                    ">
+                      <ion-icon name="close"></ion-icon>
+                    </a>
+                  </td>
                 </tr>
                 @endforeach
                 

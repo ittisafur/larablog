@@ -35,5 +35,6 @@
 <script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+<script src="https://unpkg.com/ionicons@4.2.4/dist/ionicons.js"></script>
 
 @yield('footerScriptSection')
