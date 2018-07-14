@@ -65,8 +65,26 @@
                   <td>{{$loop->index + 1}}</td>
                   <td>{{$category->name}}</td>
                   <td>{{$category->slug}}</td>
-                  <td>Edit</td>
-                  <td>X</td>
+                  <td><a href="{{route('category.edit', $category->id)}}"><ion-icon name="create"></ion-icon></a></td>
+                  <td>
+                    <form id="delete-form-{{$category->id}}" action="{{route('category.destroy',$category->id)}}"  style="display: none;"  method="POST">
+                      {{csrf_field()}}
+                      {{method_field('DELETE')}}
+                    </form>
+                    <a href="" onclick="
+                      if(confirm('Are you sure? You want to delete the Post ?'))
+                        {
+                          event.preventDefault();
+                          document.getElementById('delete-form-{{$category->id}}').submit();
+                        }
+                      else
+                        {
+                          event.preventDefault();
+                        }
+                    ">
+                      <ion-icon name="close"></ion-icon>
+                    </a>
+                  </td>
                 </tr>
                 @endforeach
                 

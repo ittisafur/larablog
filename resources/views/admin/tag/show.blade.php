@@ -90,8 +90,26 @@
                           <td>{{$loop->index + 1}}</td>
                           <td>{{$tag->name}}</td>
                           <td>{{$tag->slug}}</td>
-                          <td>Edit</td>
-                          <td>X</td>
+                          <td><a href="{{route('tag.edit', $tag->id)}}"><ion-icon name="create"></ion-icon></a></td>
+                          <td>
+                            <form id="delete-form-{{$tag->id}}" action="{{route('tag.destroy',$tag->id)}}"  style="display: none;"  method="POST">
+                              {{csrf_field()}}
+                              {{method_field('DELETE')}}
+                            </form>
+                            <a href="" onclick="
+                              if(confirm('Are you sure? You want to delete the Post ?'))
+                                {
+                                  event.preventDefault();
+                                  document.getElementById('delete-form-{{$tag->id}}').submit();
+                                }
+                              else
+                                {
+                                  event.preventDefault();
+                                }
+                            ">
+                              <ion-icon name="close"></ion-icon>
+                            </a>
+                          </td>
                         </tr>
                         @endforeach
                         

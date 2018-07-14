@@ -37,7 +37,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request, [
+        $this->validate($request, [
             'name' => 'required',
             'slug' => 'required',
         ]);
@@ -69,7 +69,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = category::find($id)->first();
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -81,7 +82,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'slug' => 'required',
+        ]);
+
+        category::find($id)->update([
+            'name' => $request->name,
+            'slug' => $request->slug,            
+        ]);
+
+        return redirect(route('category.index')); 
     }
 
     /**
@@ -92,6 +103,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = category::find($id)->delete();
+        return redirect()->back();
     }
 }
