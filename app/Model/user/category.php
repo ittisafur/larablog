@@ -9,6 +9,10 @@ class category extends Model
     protected $guarded = [];
     public function posts()
     {
-    	return $this->belongsToMany('App\Model\user\post', 'category_posts');
+    	return $this->belongsToMany('App\Model\user\post', 'category_posts')->paginate(4);
+    }
+    public function getRouteKeyName()
+    {
+    	return 'slug';
     }
 }

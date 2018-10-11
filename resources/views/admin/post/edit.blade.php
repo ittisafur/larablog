@@ -1,5 +1,10 @@
 @extends('admin.layouts.app')
 
+@section('headSection')
+	<link rel="stylesheet" href="{{asset('admin/plugins/select2/select2.min.css')}}">
+@stop
+
+
 @section('content')
 
 <!-- Content Wrapper. Contains page content -->
@@ -31,7 +36,7 @@
 		<div class="card card-primary">
 		  <!-- form start -->
 		  
-		  <form role="form" action="{{route('post.update', $post->id)}}" method="POST">
+		  <form role="form" action="{{route('post.update', $post->id)}}" method="POST" enctype="multipart/form-data">
 		  	
 		  	{{csrf_field()}}
 		  	{{method_field('PATCH')}}
@@ -65,10 +70,46 @@
 	    		  </div>
 	    		</div>
 
+	    		<div class="form-group">
+                  <label>Category</label>
+                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
+                  	@foreach($categories as $category)
+                    <option value="{{$category->id}}"
+                    	@foreach($post->categories as $postCategory)
+                    		@if($postCategory->id == $category->id)
+                    			selected
+                    		@endif
+                    	@endforeach
+                    >{{$category->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Tag</label>
+                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+                  	@foreach($tags as $tag)
+                    <option value="{{$tag->id}}"
+                    	@foreach($post->tags as $postTag)
+                    		@if($postTag->id == $tag->id)
+                    			selected
+                    		@endif
+                    	@endforeach
+                    >{{$tag->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+
 
 	    		<div class="form-check">
-	    		  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-	    		  <label name="status" class="form-check-label" for="exampleCheck1">Publish</label>
+	    		  
+	    		    <label class="form-check-label" for="exampleCheck1">
+	    		   		<input name="status" value="1" type="checkbox" class="form-check-input" id="exampleCheck1"
+	   		    		   @if ($post->status == 1)
+	   						{{'checked'}}
+	   		    		   @endif
+	    		   		> Publish
+	    			</label>
 	    		</div>		      
 		      
 		    </div>
@@ -115,3 +156,17 @@
 <!-- /.content-wrapper -->
 
 @stop
+
+@section('footerScriptSection')
+
+<script src="{{asset('admin/plugins/select2/select2.full.min.js')}}"></script>
+
+<script>
+$(document).ready(function(){
+	$(".select2").select2();
+});
+</script>
+
+@stop
+
+{{-- 9 --}}

@@ -17,4 +17,8 @@ class post extends Model
     {
     	return $this->belongsToMany('App\Model\user\category', 'category_posts');
     }
+    public function getRouteKeyName()
+    {
+    	return 'slug';
+    }
 }
